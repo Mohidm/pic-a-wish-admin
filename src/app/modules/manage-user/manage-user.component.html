@@ -1,0 +1,57 @@
+<div class="search-div">
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput [(ngModel)]="searchKey" placeholder="search" autocomplete="off" (keyup)="applyFilter()">
+        <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)=onSearchClear()>
+         <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div >
+    <h3>Business Users</h3>
+</div>
+ <div class="mat-elevation-z8">
+    <mat-table [dataSource]="busUsers" matSort>
+        <ng-container matColumnDef="name">
+         <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+         <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+           <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+           <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="roleType">
+           <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+           <mat-cell *matCellDef="let element" class="DC">{{element.roleType}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="created">
+           <mat-header-cell *matHeaderCellDef mat-sort-header>Created</mat-header-cell>
+           <mat-cell *matCellDef="let element">{{element.created}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="isActivated">
+           <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+           <mat-cell *matCellDef="let element">
+            <div *ngIf="element.isActivated === false; else elseDiv">
+                Inactive
+            </div>
+            <ng-template #elseDiv>
+               Active
+            </ng-template>
+           </mat-cell>    
+          </ng-container>
+        
+          <ng-container matColumnDef="Action">
+           <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+           <mat-cell *matCellDef="let element; let i=index">
+            <mat-button-toggle-group name="isActivated" >
+                <mat-slide-toggle (change)="checkStatus(i)">Toggle User</mat-slide-toggle>
+                
+               
+              </mat-button-toggle-group>
+           </mat-cell>  
+          </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumn"></mat-header-row>
+        <mat-row *matRowDef="let row; columns:displayedColumn;"></mat-row>
+        
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[3,10,25]" [pageSize]="3" showFirstLastButtons></mat-paginator>
+</div>

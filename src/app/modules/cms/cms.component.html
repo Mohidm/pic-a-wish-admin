@@ -1,0 +1,9 @@
+<div class="container">
+    <header class="header">
+      <h1>CMS Editor</h1> 
+    </header>
+      <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+    <h3 class="html-header">HTML Output</h3>
+    <div class="html">
+      {{ htmlContent }}
+    </div>
