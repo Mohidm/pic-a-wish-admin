@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 
 
 
-@NgModule({
+@NgModule({ 
   declarations: [
     HeaderComponent,
     SidebarComponent,

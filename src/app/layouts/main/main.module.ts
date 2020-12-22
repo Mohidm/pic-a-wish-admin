@@ -10,6 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsComponent } from 'src/app/modules/cms/cms.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -30,7 +31,8 @@ import { CmsComponent } from 'src/app/modules/cms/cms.component';
     FormsModule,
     ReactiveFormsModule,
     AngularEditorModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
     
 
 

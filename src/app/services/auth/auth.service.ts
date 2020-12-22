@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import {User} from './auth.model'
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
   private _loginUrl = "http://localhost:3000/admin/authenticate"
   private token:string;
   private tokenTimer:any
-  constructor(private http: HttpClient, private route:Router) { }
+  constructor(private http: HttpClient, private route:Router,private toastr:ToastrService) { }
 
   getToken(){
     return this.token
@@ -34,7 +35,7 @@ export class AuthService {
         
       }
       
-    },err=> console.log(err.error)
+    },err=> this.toastr.error(err.error)
     )
       
     
